@@ -1,1 +1,111 @@
-<p>master-user works!</p>
+
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">nombre</th>
+            <th scope="col">email</th>
+            <th scope="col">acciones</th>
+    
+          </tr>
+        </thead>
+        <tbody *ngFor="let user of users">
+          <tr>
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td><button class="btn btn-warning" (click)="edit(user)" data-toggle="modal" data-target="#exampleModal">Editar</button></td>
+            <td><button class="btn btn-danger" (click)="delete(user.id)">Eliminar</button></td>
+          </tr>
+        </tbody>
+    </table>
+
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary"  (click)="create()" data-toggle="modal" data-target="#exampleModal">
+    Agregar nuevo usuario
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 *ngIf="modalOption === 'create'" class="modal-title" id="exampleModalLabel">Creacion de usuario</h5>
+          <h5 *ngIf="modalOption === 'edit'" class="modal-title" id="exampleModalLabel">Edicion de usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="userForm">
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control" formControlName="name">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Username</label>
+                  <input type="text" class="form-control" formControlName="username">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Email</label>
+                  <input type="text" class="form-control" formControlName="email">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Street</label>
+                  <input type="text" class="form-control" formControlName="street">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Suite</label>
+                  <input type="text" class="form-control" formControlName="suite">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">City</label>
+                  <input type="text" class="form-control" formControlName="city">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Zipcode</label>
+                  <input type="text" class="form-control" formControlName="zipcode">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Lat</label>
+                  <input type="text" class="form-control" formControlName="lat">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Lng</label>
+                  <input type="text" class="form-control" formControlName="lng">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Phone</label>
+                  <input type="text" class="form-control" formControlName="phone">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Website</label>
+                  <input type="text" class="form-control" formControlName="website">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Company name</label>
+                  <input type="text" class="form-control" formControlName="company_name">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Company Catch Phrase</label>
+                  <input type="text" class="form-control" formControlName="company_catchPhrase">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="exampleInputPassword1">Company bs</label>
+                  <input type="text" class="form-control" formControlName="company_bs">
+                </div>
+
+              </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">Close</button>
+                  <button *ngIf="modalOption === 'create'" (click)="submit()" class="btn btn-primary">Crear</button>
+                  <button *ngIf="modalOption === 'edit'" (click)="update()" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
